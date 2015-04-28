@@ -8,6 +8,7 @@ require 'facebook_topics/results/feed_collection'
 require 'facebook_topics/results/topic_collection'
 require 'facebook_topics/results/feed'
 require 'facebook_topics/results/topic'
+require 'facebook_topics/results/insight'
 
 module FacebookTopics
 

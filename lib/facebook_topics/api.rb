@@ -48,9 +48,10 @@ module FacebookTopics
 
 
 
-    def insights(contains_all, date_range = nil, fields = [])
+    def insights(contains_all, fields = [])
       q = {contains_all: [contains_all], fields: fields.flatten.uniq.join(',')}
-      Insights.new self.class.get("/#{api_version}/topic_insights", {query: q}).parsed_response
+
+      Insight.new self.class.get("/#{api_version}/topic_insights", {query: q}).parsed_response
     end
 
 

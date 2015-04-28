@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    facebook_topics (1.0.0)
+    facebook_topics (1.1.1)
       hashie (~> 3.4)
-      httparty (~> 0.13)
+      httparty (~> 0.11)
       rainbow (~> 2.0)
 
 GEM

@@ -1,10 +1,11 @@
 module FacebookTopics
-  class Insights
+  class Insight
     attr_accessor :volume, :breakdown
 
-    def initialize(results = [])
-      @volume = results["data"].first["mentions"]["data"].shift["count"].to_i
-      @breakdown = results["data"].first["mentions"]["data"]
+    def initialize(results = {})
+      raise RuntimeError.new results["error"]["message"] if results.has_key? "error"
+      @volume = results["data"].first["mentions"]["data"].shift["count"].to_i rescue 0
+      @breakdown = results["data"].first["mentions"]["data"] rescue []
     end
 
 
