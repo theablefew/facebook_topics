@@ -6,7 +6,7 @@ require 'bundler/version'
 
 Gem::Specification.new do |s|
   s.name        = "facebook_topics"
-  s.version     = "1.1.2"
+  s.version     = "1.1.3"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Spencer Markowski"]
   s.email       = ["spencer@theablefew.com"]
