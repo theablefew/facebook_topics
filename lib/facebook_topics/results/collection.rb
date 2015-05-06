@@ -4,7 +4,7 @@ module FacebookTopics
   class Collection
     extend Forwardable
 
-    def_delegators :@results, :<<, :length, :first, :last, :collect, :to_a, :each, :reject, :select, :count, :[], :empty?
+    def_delegators :@results, :<<, :length, :first, :last, :collect, :to_a, :each, :reject, :select, :count, :[], :empty?, :each_with_index
 
     def initialize(results = {})
       unless results.nil?

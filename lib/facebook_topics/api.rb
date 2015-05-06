@@ -48,11 +48,32 @@ module FacebookTopics
 
 
 
-    def insights(contains_all, fields = [])
-      q = {contains_all: [contains_all], fields: fields.flatten.uniq.join(',')}
+    def insights(contains_all, opts = {} )
+        from_date = opts.delete(:from_date)
+       until_date = opts.delete(:until_date)
+           region = opts.delete(:region)
+             city = opts.delete(:city)
+          country = opts.delete(:country)
+        continent = opts.delete(:continent)
+        breakdown = opts.delete(:breakdown)
 
-      Insight.new self.class.get("/#{api_version}/topic_insights", {query: q}).parsed_response
+      fields = "mentions"
+      fields << ".since(#{from_date})" unless from_date.nil?
+      fields << ".until(#{until_date})" unless until_date.nil?
+      fields << ".region(#{region})" if region.present?
+      fields << ".city(#{city})" if city.present?
+      fields << ".country(#{country})" if country.present?
+      fields << ".continent(#{continent})" if continent.present?
+      fields << ".breakdown_by(#{breakdown.reject(&:blank?)})" if breakdown.present?
+
+      q = {contains_all: [contains_all], fields: fields}
+
+      data = Insight.new self.class.get("/#{api_version}/topic_insights", {query: q}).parsed_response
+      data.breakdown.each { |d| d["date"] = {from_date: from_date, until_date: until_date}.stringify_keys }
+      return data
     end
+
+
 
 
 

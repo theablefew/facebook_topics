@@ -8,6 +8,5 @@ module FacebookTopics
       @breakdown = results["data"].first["mentions"]["data"] rescue []
     end
 
-
   end
 end
